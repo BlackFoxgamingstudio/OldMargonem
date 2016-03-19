@@ -1,0 +1,144 @@
+/************* CLAN ************/
+#clan {
+	position:absolute;
+	display:none;
+	z-index:361;
+	left:0px;
+	top:0px;
+	width:512px;
+	height:512px;
+	background:#e7e2c7 url(http://www.margonem.pl/obrazki/interface/paper512.png);
+}
+.clanpage {
+	color:black;
+	padding:0;
+	font-size:11px;
+	text-align:left;
+}
+.clanpage A {
+	color:#060;
+}
+.clanpage A:hover {
+	color:#000;
+}
+.clanpage A IMG {
+	border:none;
+}
+.clanpage BUTTON {
+	border:1px solid yellow;
+	height:21px;
+	background:#444;
+	color:#ffd;
+}
+#clanlogo {
+	width:512px;
+	height:100px;	
+}
+#clanbar {
+	width:512px;
+	height:26px;
+	background:#050 url(http://www.margonem.pl/obrazki/interface/clanmenu.png);
+	padding:0;
+	margin:0;
+}
+#clanbar span {
+	margin:0;
+	margin-left:1px;
+	height:26px;
+	cursor:pointer;
+	display:block;
+	float:left;	
+}
+#clanbar #clanclose {
+	float:right;
+	display:block;
+	margin:2px 4px 0 0;
+	width:22px;
+	height:22px;
+	background-image:url(http://www.margonem.pl/obrazki/interface/wquests-close.png);	
+}
+#clancontent {
+	width:512px;
+	height:386px;
+	overflow:auto;
+	color:black;
+	padding:0;
+	margin:0;
+	font-size:11px;
+}
+#clancontent TD {
+	color:black;
+}
+#clancontent TABLE.members {
+	width:94%;
+	margin:3%;
+	font: 12px Arial;
+	border-collapse:collapse;		
+}
+#clancontent TABLE.members TH {
+	background: #300;
+	border:1px solid #333;
+	color:white;
+}
+#clancontent TABLE.members TD {
+	color:black;
+	border:1px solid #433;
+	padding:3px;
+}
+#clancontent DIV.box {
+	margin:0;
+	padding:0;
+}
+#clancontent TABLE.ranks {
+	margin:10px;
+	font: 12px Arial;
+	border-collapse:collapse;		
+}
+#clancontent TABLE.ranks TH {
+	background: #300;
+	border:1px solid #333;
+	color:white;
+}
+#clancontent TABLE.ranks TD {
+	color:black;
+	border:1px solid #433;
+	padding:3px;
+}
+#clancontent TABLE.ranks BUTTON {
+	height:18px;
+	font-size:11px;
+}
+#editrank {
+	background:#500;
+}
+#rankid {
+	width:30px;
+}
+#rankname {
+	width:180px;
+}
+#clancontent TABLE.ranks #editrank TD.rr {
+	text-align:center;
+	color:yellow;
+	cursor:pointer;
+}
+#goldlog {
+	width:450px;
+	text-align:left;
+	height:200px;
+	overflow:auto;
+	border:1px solid #300;
+	line-height:140%;
+	padding:3px;
+}
+SPAN.clanname {
+	cursor:pointer;
+	display:block;
+	padding:3px;	
+	text-align:left;
+	margin-left:20px;
+	font-size:14px;
+}
+SPAN.clanname:hover {
+	background:#c7c2a7;
+}

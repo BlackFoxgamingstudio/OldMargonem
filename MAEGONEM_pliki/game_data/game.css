@@ -1,0 +1,1959 @@
+/* (c) Thinker 2006-2010, Margonem RPG */
+
+/********* BASIC *********/
+* {  /* for maximum compatibility between different browsers */
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+BODY {
+	margin:0;
+	padding:0;
+	background-color:black;
+	color:white;
+	overflow:hidden;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	cursor:default;
+	border:none;	
+}
+A {
+	color:yellow;
+}
+A:hover {
+	color:white;
+}
+#loading {
+	position:absolute;
+	left:0;
+	top:0;
+	background:black url(obrazki/game/loading.png) no-repeat top center;
+	color:white;
+	z-index:400;
+	width:786px;
+	height:537px;
+}
+#loading SPAN {
+	display:block;
+	margin-top:400px;
+	text-align:center;
+	width:100%; 
+}
+#lpanel {
+	position:absolute;
+	z-index:300;
+	left:512px;
+	top:0;
+	width:280px;
+	height:544px;
+	background-image:url(obrazki/interface/panel.png);
+}
+#bpanel {
+	position:absolute;
+	z-index:300;
+	left:0;
+	top:512px;
+	width:512px;
+	height:32px;
+	background-image:url(obrazki/interface/bottom-bar.png);
+}
+#imgloaded {
+	position:absolute;
+	width:200px;
+	text-align:center;
+	background:black;
+	z-index:410;
+	height:22px;
+	padding:3px;
+	color:yellow;
+	top:0px;
+	left:312px;
+}
+#dialog {
+	position:absolute;
+	z-index:301;
+	display:none;
+	left:0;
+	top:256px;
+	width:512px;
+	height:256px;
+	background:url(obrazki/inne/50blue.png);
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='obrazki/inne/50blue.png',sizingMethod='scale');
+	color: #eee;
+	font-size:12px;
+	padding:5px;
+	overflow:auto;
+}
+#dialog B.title {
+	display:block;
+	margin-left:3px;
+	margin-bottom:5px;
+	font-size:105%;
+}
+#dialog .dbut {
+	display:block;
+	color:#ffc;
+	cursor:pointer;
+	margin-left:15px;
+	margin-top:5px;	
+}
+#msg {
+	display:none;
+	position:absolute;
+	z-index:380;
+	top:224px;
+	left:0;
+	width:512px;
+	height:64px;
+	font:bold 20px Arial, Verdana;
+	color: yellow;
+	text-align:center;
+}
+#alert {
+	display:none;
+}
+#status {
+	position:absolute;
+	top:519px;
+	left:30px;
+	height:20px;
+	overflow:hidden;
+	z-index:306;	
+	color:#ccc;
+	font:12px arial,verdana;
+	padding:2px;
+}
+DIV.close {
+	background:#500;
+	color:yellow;
+	font-size:11px;
+	text-align:right;
+	cursor:pointer;
+	padding:3px 20px;
+}
+DIV.close:hover {
+	background:#600;
+}
+#lagometer {
+	position:absolute;
+	width:19px;
+	height:32px;
+	left:494px;
+	top:512px;
+	z-index:307;
+	background-image:url(obrazki/interface/lagometer.png);
+}
+#pvpmode {
+	position:absolute;
+	width:17px;
+	height:17px;
+	left:10px;
+	top:518px;
+	z-index:307;
+	background-image:url(obrazki/interface/pvpmode.png);
+}
+#logoutbut {
+	position:absolute;
+  background-position: 0px 0px;
+	z-index:305;
+	left:708px;
+	top:512px;
+	width:68px;
+	height:20px;
+	cursor:pointer;
+	background-image:url(obrazki/interface/b_logout.png);
+}
+#logoutbut:hover {
+	position:absolute;
+  background-position: 0px 20px;
+	z-index:305;
+	left:708px;
+	top:512px;
+	width:68px;
+	height:20px;
+	cursor:pointer;
+	background-image:url(obrazki/interface/b_logout.png);
+}
+#helpbut {
+	position:absolute;
+	z-index:305;
+	left:602px;
+	top:512px;
+	width:68px;
+	height:20px;
+	cursor:pointer;
+	background-image:url(obrazki/interface/b_help.png);
+}
+B.yourname {
+	color:orange;
+}
+.cen {
+	text-align:center;
+}
+.vmid {
+	vertical-align:middle;
+}
+/************ NEW LVL **********/
+#newlvl {
+	position:absolute;
+	z-index:300;
+	left:470px;
+	top:470px;
+	display:none;
+	cursor:pointer;
+	background:url(obrazki/interface/lvlup.gif);
+	width:32px;
+	height:32px;
+}
+#abilitypoints {
+	position:absolute;
+	z-index:300;
+	left:56px;
+	top:111px;
+	width:400px;
+	height:290px;
+	background:url(obrazki/interface/abpoints.png);
+	display:none;
+}
+#abpoints {
+	text-align:center;
+	color:black;
+	font-size:13px;
+	font-weight:bold;
+	width:380px;
+	margin:5px;
+	display:block;
+}
+.ab1, .ab5 {
+	position:absolute;
+	left:284px;
+	top:112px;
+	width:27px;
+	height:27px;
+	background-image:url(obrazki/interface/ab1.png);
+	cursor:pointer;
+}
+.ab5 {
+	left:321px;
+	background-image:url(obrazki/interface/ab5.png);
+}
+/************* STATS *************/
+#lp_nick {
+	position:absolute;
+	z-index:301;
+	left:10px;
+	top:10px;
+	font-weight:bold;
+	width:260px;
+	height:18px;
+	text-align:center;
+}
+#exp1 {
+	position:absolute;
+	top:57px;
+	left:533px;
+	width:114px;
+	height:8px;
+	font-size:1px;
+	z-index:301;
+}
+#exp2 {
+	width:1px;
+	height:8px;
+	background-image:url(obrazki/interface/exp.png);
+}
+#life1 {
+	position:absolute;
+	top:45px;
+	left:533px;
+	width:114px;
+	height:8px;
+	font-size:1px;
+	z-index:301;
+}
+#life2 {
+	width:1px;
+	height:8px;
+	background-image:url(obrazki/interface/life.png);
+}
+#base3 {
+	position:absolute;
+	z-index:301;
+	left:730px;
+	top:50px;
+	height:38px;
+	width:35px;
+	font-size:11px;
+	font:10px Arial, Verdana;	
+	text-align:right;
+	color:#ccc;
+}
+#base3 B {
+	margin:2px;
+	color:white;
+}
+#gold {
+	position:absolute;
+	top:80px;
+	left:575px;
+	font:10px Arial, Verdana;
+	color:#fd0;
+	text-align:center;
+	width:60px;	
+	z-index:301;
+}
+#leorn1, #leorn2 {
+	position:absolute;
+	top:41px;
+	left:525px;
+	z-index:301;
+}
+#leorn2 {
+	left:635px;
+}
+#stat2 {
+	position:absolute;
+	left:148px;
+	top:103px;
+	font:10px Arial, Verdana;	
+	color:#ccc;
+	width:117px;
+	height:98px;	
+	background-image:url(obrazki/interface/stats.png);
+}
+#stat2in {
+	margin-top:4px;
+	height:70px;
+	width:111px;
+	overflow:hidden;
+	text-align:right;	
+}
+#stat2but {
+	width:116px;
+	height:24px;
+	cursor:pointer;
+}
+/*
+#stat2a,#stat2b {
+	position:absolute;
+	left:0;top:15px;
+	width:55px;
+	height:70px;
+}
+#stat2b {
+	left:55px;
+}*/
+/************* TIPS *************/
+#oTip {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip2 {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip3 {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_lhand {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_lhand B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_lhand B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_lhand B.upgraded {
+	color:#FD0;
+}
+#oTip_lhand B.unique {
+	color:#DAA520;
+}
+#oTip_lhand B.heroic {
+	color:#2090FE;
+}
+#oTip_lhand B.legendary {
+	color:#FA9A20;
+}
+#oTip_lhand B.artefact {
+	color:#f0032a;
+}
+#oTip_lhand B.expires {
+	display:block;
+	color:red;
+}
+#oTip_torba {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_cap {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_cap B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_cap B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_cap B.upgraded {
+	color:#FD0;
+}
+#oTip_cap B.unique {
+	color:#DAA520;
+}
+#oTip_cap B.heroic {
+	color:#2090FE;
+}
+#oTip_cap B.legendary {
+	color:#FA9A20;
+}
+#oTip_cap B.artefact {
+	color:#f0032a;
+}
+#oTip_cap B.expires {
+	display:block;
+	color:red;
+}
+#oTip_hand {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_hand B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_hand B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_hand B.upgraded {
+	color:#FD0;
+}
+#oTip_hand B.unique {
+	color:#DAA520;
+}
+#oTip_hand B.heroic {
+	color:#2090FE;
+}
+#oTip_hand B.legendary {
+	color:#FA9A20;
+}
+#oTip_hand B.artefact {
+	color:#f0032a;
+}
+#oTip_hand B.expires {
+	display:block;
+	color:red;
+}
+#oTip_rhand {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_rhand B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_rhand B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_rhand B.upgraded {
+	color:#FD0;
+}
+#oTip_rhand B.unique {
+	color:#DAA520;
+}
+#oTip_rhand B.heroic {
+	color:#2090FE;
+}
+#oTip_rhand B.legendary {
+	color:#FA9A20;
+}
+#oTip_rhand B.artefact {
+	color:#f0032a;
+}
+#oTip_rhand B.expires {
+	display:block;
+	color:red;
+}
+#oTip_amulet {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_amulet B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_amulet B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_amulet B.upgraded {
+	color:#FD0;
+}
+#oTip_amulet B.unique {
+	color:#DAA520;
+}
+#oTip_amulet B.heroic {
+	color:#2090FE;
+}
+#oTip_amulet B.legendary {
+	color:#FA9A20;
+}
+#oTip_amulet B.artefact {
+	color:#f0032a;
+}
+#oTip_amulet B.expires {
+	display:block;
+	color:red;
+}
+#oTip_ring {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_ring B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_ring B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_ring B.upgraded {
+	color:#FD0;
+}
+#oTip_ring B.unique {
+	color:#DAA520;
+}
+#oTip_ring B.heroic {
+	color:#2090FE;
+}
+#oTip_ring B.legendary {
+	color:#FA9A20;
+}
+#oTip_ring B.artefact {
+	color:#f0032a;
+}
+#oTip_ring B.expires {
+	display:block;
+	color:red;
+}
+#oTip_boots {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_boots B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_boots B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_boots B.upgraded {
+	color:#FD0;
+}
+#oTip_boots B.unique {
+	color:#DAA520;
+}
+#oTip_boots B.heroic {
+	color:#2090FE;
+}
+#oTip_boots B.legendary {
+	color:#FA9A20;
+}
+#oTip_boots B.artefact {
+	color:#f0032a;
+}
+#oTip_boots B.expires {
+	display:block;
+	color:red;
+}
+#oTip_talizman {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_talizman B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_talizman B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_talizman B.upgraded {
+	color:#FD0;
+}
+#oTip_talizman B.unique {
+	color:#DAA520;
+}
+#oTip_talizman B.heroic {
+	color:#2090FE;
+}
+#oTip_talizman B.legendary {
+	color:#FA9A20;
+}
+#oTip_talizman B.artefact {
+	color:#f0032a;
+}
+#oTip_talizman B.expires {
+	display:block;
+	color:red;
+}
+#oTip_armor {
+	position:absolute;
+	z-index:390;
+	display:none;
+	padding:3px;
+}
+#oTip_armor B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_armor B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_armor B.upgraded {
+	color:#FD0;
+}
+#oTip_armor B.unique {
+	color:#DAA520;
+}
+#oTip_armor B.heroic {
+	color:#2090FE;
+}
+#oTip_armor B.legendary {
+	color:#FA9A20;
+}
+#oTip_armor B.artefact {
+	color:#f0032a;
+}
+#oTip_armor B.expires {
+	display:block;
+	color:red;
+}
+#oTip_item {
+	position: absolute;
+	z-index: 350;
+	display: none;
+	padding: 3px;
+}
+#oTip_item B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip_item B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip_item B.upgraded {
+	color:#FD0;
+}
+#oTip_item B.unique {
+	color:#DAA520;
+}
+#oTip_item B.heroic {
+	color:#2090FE;
+}
+#oTip_item B.legendary {
+	color:#FA9A20;
+}
+#oTip_item B.artefact {
+	color:#f0032a;
+}
+#oTip_item B.expires {
+	display:block;
+	color:red;
+}
+#oTip B.att {
+	color:#ec0;
+	display:inline;
+}
+#oTip B.att2 {
+	color:red;
+	display:inline;
+}
+#oTip B.upgraded {
+	color:#FD0;
+}
+#oTip B.unique {
+	color:#DAA520;
+}
+#oTip B.heroic {
+	color:#2090FE;
+}
+#oTip B.legendary {
+	color:#FA9A20;
+}
+#oTip B.artefact {
+	color:#f0032a;
+}
+#oTip B.expires {
+	display:block;
+	color:red;
+}
+.ctip B {
+	display:block;
+}
+.ctip {
+	background:#036;
+	border:1px solid #777;
+	color:white;	
+	font:10px Verdana;
+}
+.ctip2 {
+	background:#036;
+	border:1px solid #777;
+	color:white;	
+	font:10px Verdana;
+}
+.tip_item {
+	background:#630;
+}
+.tip_item B {
+	display: block;
+	text-align:center;
+	color: #cc7;
+}
+.tip_npc {
+	background:#040;
+}
+.tip_npc B {
+	display:block;
+	text-align:center;
+	color:#fa2;
+}
+.tip_npc I {
+	display:block;
+	text-align:center;
+	color:#2af;
+}
+.tip_other B {
+	display:block;
+	text-align:center;
+	color:#ee0;
+}
+.tip_other I {
+	display:block;
+	text-align:center;
+	color:#fd9;
+	font-style:normal;
+}
+.tip_other2 {
+	background:#700;
+}
+.tip_other2 B {
+	display:block;
+	text-align:center;
+	color:#ee0;
+}
+.tip_other2 I {
+	display:block;
+	text-align:center;
+	color:#fd9;
+	font-style:normal;
+}
+.tip_gateway {
+	background:#433;
+}
+.anitem {
+	border:2px solid white;
+	background:#0B3201 url(http://www.margonem.pl/img/menuback.png);
+	padding:3px;
+	width:42px;
+	height:42px;
+}
+/************ CHAT **************/
+#chat {
+	position:absolute;
+	z-index:302;
+	left:540px;
+	top:270px;
+	width:228px;
+	height:190px;
+	overflow:auto;
+	font-family:Arial, Verdana, sans-serif;
+	scrollbar-3dlight-color:#040;
+	scrollbar-arrow-color:black;
+	scrollbar-base-color:#FAFAED;
+	scrollbar-darkshadow-color:#020;
+	scrollbar-face-color:#fc0;
+	scrollbar-highlight-color:#050;
+	scrollbar-shadow-color:#020;
+	scrollbar-track-color:#030;
+}
+#chatTxt {
+	font-size:10px;
+}
+#chatTxt U {
+	cursor:pointer;
+	color:gold;
+}
+#chatIn {
+	position:absolute;
+	z-index:302;
+	left:535px;
+	top:490px;
+	width:235px;
+	height:18px;
+	color:white;
+	background: transparent;
+	border:none;
+	font-size:10px;
+}
+.chwywal {
+	color:red;
+}
+.chpriv {
+	color:#fc0;
+}
+.chprivsend {
+	color:#af6;
+}
+.fightgr {
+	color:#b554ff;
+}
+.chnick {
+	color:#ffb;
+}
+/*********** CONSOLE ************/
+#mconsole {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:300px;
+	background-image:url(obrazki/game/con_bk.png);
+	z-index:500;	
+	border-bottom:1px solid #0000FF;
+	overflow:hidden;
+	display:none;
+}
+#con1 {
+	height:270px;	
+	overflow:auto;
+}
+#con2 {
+	height:25px;
+}
+#consoleTxt {
+	font-family:Courier, "Courier New", serif;
+	font-size:10px;
+	margin:5px;
+}
+#consoleIn {
+	margin-left:5px;
+	margin-top:5px;
+	width:780px;
+	border:none;
+	background-color: #001188;
+	color:white;
+}
+.loglvl_1 {
+	color: yellow;
+}
+.loglvl_2 {
+	color: #FFA500;
+}
+.loglvl_3 {
+	color: red;
+	font-weight:bold;
+}
+
+/*************  Objects ************/
+.cItem {
+	position:absolute;
+	display:none;
+}
+DIV.cItem {
+	width:32px;
+	height:48px;
+}
+#oHero {
+	position:absolute;
+	display:none;
+	width:32px;
+	height:48px;
+}
+#oMap {
+	position:absolute;
+	top:0;
+	left:0;
+	width:512px;
+	height:512px;
+	background-repeat:no-repeat;
+}
+#oDrag {
+	display:none;
+	position:absolute;
+	z-index:499;
+	width:32px;
+	height:32px;
+}
+/*********** EQUIPMENT *************/
+#equip {
+	position:absolute; 
+	left:530px;
+	top:112px;
+	width:105px;
+	height:150px;
+	z-index:302;
+}
+#bag {
+	position:absolute;
+	display:none;
+	z-index:302;
+	left:537px;
+	top:267px;
+	width:229px;
+	height:233px;
+	overflow:hidden;
+}
+#bagback {
+	position:absolute;	
+	z-index:301;
+	left:526px;
+	top:254px;
+	width:252px;
+	height:256px;
+	background:url(obrazki/interface/equip.png);
+}
+.cequip {
+	display:block;
+	height:32px;
+	width:32px;
+	position:absolute;
+}
+/*********** BUTTONS **************/
+#questbutton {
+	position:absolute;
+	z-index:303;
+	left:662px;
+	top:205px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/quests.png);
+}
+#pvpbutton {
+	position:absolute;
+	z-index:303;
+	left:722px;
+	top:205px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/pvp.png);
+}
+#eqbutton {
+	position:absolute;
+	z-index:305;
+	left:529px;
+	top:512px;
+	width:68px;
+	height:20px;
+	cursor:pointer;
+	background-image:url(obrazki/interface/b_eqchat.png);
+}
+#clanbutton {
+	position:absolute;
+	z-index:303;
+	left:692px;
+	top:205px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/clans.png);
+}
+#configbutton {
+	position:absolute;
+	z-index:303;
+	left:752px;
+	top:205px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/config.png);
+}
+#mapbutton {
+	position:absolute;
+	z-index:303;
+	left:662px;
+	top:230px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/themap.png);
+}
+#skillsbutton {
+	position:absolute;
+	z-index:303;
+	left:692px;
+	top:230px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/b_skills.png);
+}
+#friendsbutton {
+	position:absolute;
+	z-index:303;
+	left:722px;
+	top:230px;	
+	cursor:pointer;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/b_friends.png);
+}
+/************* QUESTS / HELP ************/
+#oQuests {
+	position:absolute;
+	display:none;
+	z-index:360;
+	left:50px;
+	top:50px;
+	width:400px;
+	height:400px;
+	background:#e8e2c8 url(obrazki/interface/wquests.png);
+	overflow:hidden;
+}
+.cquest {
+	background:url(obrazki/interface/wquests-sep.gif) no-repeat bottom center;
+	padding:5px 5px 15px 10px;	
+	color:black;
+}
+.cquest P {
+	margin-left:5px;
+	color:#080;
+}
+.closeQuest {
+	position:absolute;
+	left:373px;
+	top:7px;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/wquests-close.png);
+	cursor:pointer;
+}
+P.qzad {
+	font-size:90%;
+	color:#a00;
+}
+#qSpacer {
+	width:380px;
+	height:50px;
+	margin:0;
+	padding:0;
+}
+#questsTxt {
+	width:385px;
+	height:340px;
+	margin:0px 10px 10px 5px;
+	overflow:auto;
+}
+#oHelp {
+	position:absolute;
+	display:none;
+	z-index:360;
+	left:50px;
+	top:50px;
+	width:400px;
+	height:400px;
+	background:#e8e2c8 url(obrazki/interface/sterowanie.png);
+	overflow:hidden;
+}
+#helpTxt {
+	color:black;
+	width:360px;
+	height:340px;
+	margin:0px 20px 10px 20px;
+	overflow:auto;
+}
+#helpTxt A {
+	color:#400;
+}
+/********** CONNECTION STATS *********/
+#constat {
+	display:none;
+	position:absolute;
+	z-index:330;
+	font-size:10px;
+	left:400px;
+	top:522px;
+	color:white;
+}
+#servstat {
+	display:inline;
+}
+#netstat {
+}
+/************* MENU ***************/
+#menu {
+	position:absolute;
+	z-index:355;
+	display:none;
+	background:url(obrazki/inne/50blue.png);
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='obrazki/inne/50blue.png', sizingMethod='scale');
+	border:1px solid #999;
+	color: #eee;
+	font-size:11px;
+	padding:5px;
+}
+#menu B {
+	display:block;
+	text-align:center;
+	padding:2px;
+}
+#menu BUTTON {
+	display:block;
+	background:#05b;
+	border:none;
+	margin-bottom:2px;
+	width:100px;		
+}
+#menu BUTTON:hover {
+	background:#08c;	
+}
+/************** BATTLE **************/
+#battle {
+	display:none;
+	position:absolute;
+	background:#000 url(obrazki/interface/battle.png) no-repeat bottom center;
+	top:0px;
+	left:0px;
+	width:512px;
+	height:512px;
+	z-index:370;
+	font:12px Arial, Verdana;
+	overflow:hidden;
+}
+#battleplace {
+	width:512px;
+	height:256px;
+	background:url(obrazki/battle/woods01.jpg);
+}
+#battlebuttons {
+	position:absolute;
+	left:338px;
+	top:262px;
+	width:170px;
+	height:245px;
+}
+#battlebuttons button {
+	margin:3px 5px;
+	margin-top:0;
+	width:160px;
+	height:20px;
+	border:1px solid black;
+	color:black;
+	background:#f60;
+}
+#closebattle {
+	background:#500 url(obrazki/interface/battle-close.png) 0 -38px;
+	width:153px;
+	height:19px;
+	margin:5px 10px;
+	cursor:pointer;	
+}
+#bt_attack {
+	background:#500 url(obrazki/interface/battle-attack.png) 0 -38px;
+	width:153px;
+	height:19px;
+	margin:5px 10px;
+	cursor:pointer;	
+}
+#bt_move {
+	background:#500 url(obrazki/interface/battle-move.png) 0 -38px;
+	width:153px;
+	height:19px;
+	margin:5px 10px;
+	cursor:pointer;	
+}
+#bt_use {
+	background:#500 url(obrazki/interface/battle-use.png) 0 -38px;
+	width:70px;
+	height:19px;
+	margin:0 10px;
+	cursor:pointer;	
+}
+#spell {
+	margin:0 5px;
+	width:160px;
+	background:#200 url(obrazki/interface/battle-spellback.png);
+	color:yellow;
+	border:1px solid yellow;
+}
+#battletime {
+	margin:3px 5px;
+	padding-top:3px;
+	height:20px;
+	background:#600 url(obrazki/interface/battle-spellback.png);
+	color:white;
+	text-align:center;
+}
+#battle_me {
+	margin:3px 5px;
+	width:157px;
+	height:22px;
+	background:#004 url(obrazki/interface/battle-stats.png);
+	color:gold;
+	text-align:right;
+	border-collapse:collapse;
+	table-layout:fixed;	
+}
+#battle_me TD {
+	padding-top:2px;
+	padding-right:5px;
+	font-size:10px;
+	width:50%;
+}
+#battlein {
+	position:absolute;
+	top:277px;
+	left:10px;
+	width:325px;
+	height:220px;
+	overflow:auto;
+}
+#battlein .g1, #battlein .g2 {
+	margin-bottom:2px;
+	padding:3px 10px;
+	font-size:10px;
+}
+#battlein .g1 {
+	background:#210;
+	color:#0f0;
+}
+#battlein .g2 {
+	background:#011;
+	color:#f00;
+}
+#battlein .intro, #battlein .outro {
+	margin:5px;
+}
+#battlein P
+{
+	margin: 1px;
+	padding:1px 2px;
+}
+.battr1 {
+	color:#fff;
+	background:url(obrazki/interface/battle-greenl.png);
+}
+.battr2 {
+	color:#fff;
+	background:url(obrazki/interface/battle-redl.png);
+}
+.battr3 {
+	color:#fff;
+	background:url(obrazki/interface/battle-redd.png);
+}
+.battr4 {
+	color:#fff;
+	background:url(obrazki/interface/battle-greend.png);
+}
+.battr50 {
+	color:#ffe5c7;
+	background:#333;
+	margin:3px;
+}
+.battr100 {
+	color:yellow;
+	margin:3px;
+}
+.battr101 {
+	color:red;
+	background:#000;
+	text-align:center;
+	margin:3px;
+}
+.magicdmg {
+	color:#7799ff;
+}
+.ofdmg {
+	color:#d50;
+}
+#dazed {
+	position:absolute;
+	display:none;
+	z-index:360;
+	top:0;
+	left:0;
+	width:512px;
+	height:512px;
+	background:black;
+	text-align:center;
+	padding-top:200px;
+}
+#customdiv {
+	position:absolute;
+	display:none;
+	z-index:350;
+	top:0;
+	left:0;
+	width:512px;
+	height:512px;
+	background:black;
+}
+/************** SHOP **************/
+#shop {
+	display:none;
+	position:absolute;
+	background:#400 url(obrazki/interface/shop-main.png);
+	top:50px;
+	left:125px;
+	width:269px;
+	height:435px;
+	z-index:305;
+	font:12px Arial, Verdana;
+	padding:6px;
+}
+#shopin {
+	width:256px;
+	height:320px;
+	overflow:auto;
+}
+#shopinfo {
+	font-size:10px;
+	padding:5px;
+	height:80px;
+	width:257px;
+}
+#shopclose {
+	background:#040 url(obrazki/interface/b_close.png);
+  background-position: 0px 0px;
+	height:20px;
+	width:68px;
+	float:right;
+}
+#shopclose:hover {
+	background:#040 url(obrazki/interface/b_close.png);
+  background-position: 0px 20px;
+	height:20px;
+	width:68px;
+	float:right;
+}
+#shopinfo B {
+	color: gold;
+}
+/************** TRADE **************/
+#trade {
+	position:absolute;
+	top:0;
+	left:312px;
+	width:200px;
+	height:261px;
+	padding:0;	
+	border-collapse:collapse;
+	background:url(obrazki/interface/trade-back.png);
+	z-index:305;
+	display:none;
+}
+#trade TH {
+	color:yellow;
+	height:25px;
+	font-size:12px;
+}
+#trade TD {
+	vertical-align:top;
+}
+TD#tradername1, TD#tradername2 {
+	width:100px;
+	overflow:hidden;
+	font-size:11px;
+	text-align:center;
+	padding:3px 0;
+	vertical-align:middle;		
+}
+#trade TR.smallname TD {
+	text-align:center;
+	vertical-align:bottom;
+	font-size:10px;
+	height:15px;
+}
+#tradeitem1, #tradeitem2 {
+	width:97px;
+	height:33px;
+	margin-left:1px;
+	overflow:hidden;
+}
+#showitem1, #showitem2 {
+	width:33px;
+	height:33px;
+	margin-left:34px;
+}
+#tradegold {
+	width:48px;
+	height:18px;
+	font-size:10px;
+	background:transparent;
+	color:white;
+	border:none;
+	margin:3px 0 0 18px;
+	float:left;
+}
+.btrade {
+	font-size:10px;
+	background:url(obrazki/interface/trade-arrow.png);
+	color:white;
+	width:17px;
+	height:18px;
+	float:right;
+	margin:1px 16px 0 0;
+}
+#tradeaccept1 {
+	width:68px;
+	height:20px;
+	background:url(obrazki/interface/trade-left.png) 0 20px;
+	margin:3px;
+	display:block;
+}
+#tradeaccept2 {
+	width:68px;
+	height:20px;
+	background:url(obrazki/interface/trade-right.png);
+	margin:3px;
+	margin-bottom:5px;
+	border:none;
+}
+#trcancel {
+	width:68px;
+	height:20px;
+	background:url(obrazki/interface/trade-cancel.png);
+}
+/******** CONFIG **********/
+#config {
+	display:none;
+	position:absolute;
+	top:120px;
+	left:56px;
+	width:400px;
+	background:#050 url(obrazki/interface/conf-back.png) bottom center;
+	padding:0;
+	z-index:305;
+}
+#configin {
+	margin:10px;
+}
+#configin .opt {
+	margin:10px;
+	cursor:pointer;
+	padding-left:30px;
+	padding-top:3px;
+	height:22px;
+	background:url(obrazki/interface/checkbox.png) no-repeat;
+}
+#cfgsave {	
+	width:68px;
+	height:20px;
+	margin:5px;
+	background:url(obrazki/interface/b_zapisz.png);
+}
+#cfgcancel {
+	width:68px;
+	height:20px;
+	margin:5px;
+	background:url(obrazki/interface/b_anuluj.png);
+}
+/********* MOTEL *********/
+#motel {
+	position:absolute;
+	display:none;
+	z-index:359;
+	left:0px;
+	top:0px;
+	width:512px;
+	height:512px;
+	background:#e7e2c7 url(obrazki/interface/paper512.png);
+	color:black;
+}
+.motelClose {
+	float:right;
+	width:22px;
+	height:22px;
+	margin:3px;
+	background-image:url(obrazki/interface/wquests-close.png);
+	cursor:pointer;
+}
+#motbar {
+	padding-top:8px;
+	font:bold 15px Arial;
+	height:32px;
+	width:482px;
+	color:white;
+	text-align:center;
+}
+#moteltxt {
+	width:512px;
+	height:474px;
+	overflow:auto;
+	padding:10px;
+	padding-top:20px;
+}
+#moteltxt P {
+	margin:5px;
+}
+#moteltxt TABLE {
+	border-collapse:collapse;
+	width:100%;
+}
+#moteltxt TH {
+	background:#400;
+	color:yellow;
+	text-align:cener;
+	padding:3px;
+	border:1px solid black;
+}
+#moteltxt TD {
+	color:black;
+	border:1px solid black;
+	padding:2px;
+}
+#moteltxt BUTTON {
+	font-size:95%;
+	background:#400;
+	color:yellow;
+	border:1px solid yellow;
+	padding:2px 5px;
+}
+#moteltxt BUTTON.pb {
+	font-size:11px;
+	width:100px;
+} 
+/********* MINIMAP *********/
+#minimap {
+	position:absolute;
+	display:none;
+	z-index:361;
+	left:0px;
+	top:0px;
+	width:512px;
+	height:512px;
+	background:#e7e2c7 url(obrazki/interface/paper512.png);
+	color:black;
+}
+.mapClose {
+	float:right;
+	width:22px;
+	height:22px;
+	margin:3px;
+	background-image:url(obrazki/interface/wquests-close.png);
+	cursor:pointer;
+}
+#mmapbar {
+	height:32px;
+	width:512px;
+	background-image:url(obrazki/interface/title-map.png);
+}
+#mmaphtml {
+	width:512px;
+	height:474px;
+	overflow:auto;
+}
+/********* SKILLS *********/
+#skills {
+	position:absolute;
+	display:none;
+	z-index:361;
+	left:0px;
+	top:0px;
+	width:256px;
+	height:512px;
+	background:#e7e2c7 url(obrazki/interface/skills-back.jpg);
+	color:black;
+}
+H1.stopic {
+	color:white;
+	height:40px;
+	padding:5px;
+	font-size:18px;
+	padding-bottom:0;	
+}
+.skillClose {
+	float:right;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/wquests-close.png);
+	cursor:pointer;
+}
+#skillslist, #skillshoplist {
+	overflow:auto;
+	height:465px;
+}
+#skillslist P, #skillshoplist P {
+	margin:10px;
+	padding-bottom:5px;
+	border-bottom:1px solid #400;
+}
+H2.sbranch {
+	padding-left:10px;
+	background:#400 url(obrazki/interface/skills-h2.jpg);
+	padding-bottom:2px;
+	color:ffe4b5;
+}
+.skillUse {
+	float:right;
+	margin-right:10px;
+	margin-top:10px;
+	width:22px;
+	height:22px;
+	background-image:url(obrazki/interface/skill-cb.png);
+	cursor:pointer;
+}
+#skillshop {
+	position:absolute;
+	display:none;
+	z-index:359;
+	left:256px;
+	top:0px;
+	width:256px;
+	height:512px;
+	background:#e7e2c7 url(obrazki/interface/skills-back.jpg);
+	color:black;
+}
+.skillLearn {
+	float:right;
+	margin-right:10px;
+	margin-top:10px;
+	width:72px;
+	height:19px;
+	background-image:url(obrazki/interface/b_learn.png);
+	cursor:pointer;
+}
+.sstats {
+	color:#300;
+}
+.sreq {
+	color:#666;
+}
+.sname {
+	color:#a00;
+}
+.sgold {
+	color:#d50;
+}
+/************** FRIENDS ***********/
+#friends {
+	position:absolute;
+	display:none;
+	z-index:361;
+	left:0px;
+	top:0px;
+	width:512px;
+	height:512px;
+	background:#060 url(obrazki/interface/friend-window.jpg);
+	color:white;	
+}
+#myfriends {
+	position:absolute;
+	width:256px;
+	height:430px;
+	top:37px;
+	left:0;
+	overflow:auto;
+}
+#mfadd {
+	position:absolute;
+	width:230px;
+	height:30px;
+	top:476px;
+	left:10px;
+}
+#fradd {
+	width:22px;
+	height:22px;
+	background:#500 url(obrazki/interface/fr1-add.png);
+	float:right;
+}
+.delfr {
+	width:22px;
+	height:22px;
+	background:#500 url(obrazki/interface/fr1-del.png);
+	float:right;
+}
+.chatfr {
+	width:22px;
+	height:22px;
+	background:#500 url(obrazki/interface/fr-chat.png);
+	float:right;
+	margin-right:3px;
+}
+.frloc {
+	color:gold;
+	font-size:90%;
+}
+#myenemies {
+	position:absolute;
+	width:256px;
+	height:430px;
+	top:37px;
+	left:256px;
+	overflow:auto;
+}
+#meadd {
+	position:absolute;
+	width:230px;
+	height:30px;
+	top:476px;
+	left:266px;
+}
+#enadd {
+	width:22px;
+	height:22px;
+	background:#500 url(obrazki/interface/fr2-add.png);
+	float:right;
+}
+.delen {
+	width:22px;
+	height:22px;
+	background:#500 url(obrazki/interface/fr2-del.png);
+	float:right;
+}
+.frinp {
+	background:transparent;
+	width:195px;
+	height:24px;
+	border:none;
+	color:white;
+	padding:4px;
+}
+.frbox {
+	padding:5px;
+	height:58px;
+}
+.frchar {
+	width:32px;
+	height:48px;	
+	float:left;
+	margin-right:10px;
+}
+/********* MAILS *********/
+#mails {
+	position:absolute;
+	display:none;
+	z-index:361;
+	left:0px;
+	top:0px;
+	width:512px;
+	height:512px;
+	background:#e7e2c7 url(obrazki/interface/paper512.png);
+	color:black;
+}
+#mailbar {
+	height:32px;
+	width:512px;
+	background-image:url(obrazki/interface/mailsbar.png);
+}
+#mailcontainer {
+	width:511px;
+	height:478px;
+	overflow:auto;
+	padding:10px;
+	padding-top:20px;
+}
+#newmail {
+	display:none;
+}
+#mailitem {
+	float:right;
+	width:100px;
+	height:150px;
+	border:1px solid black;
+	padding:5px;
+}
+#attitem {
+	border:2px solid white;
+	background:#0B3201 url(http://www.margonem.pl/img/menuback.png);
+	padding:3px;
+	width:42px;
+	height:42px;
+	margin: 10px;
+}
+
+#mailmsg {
+	width:370px;
+	height:150px;
+}
+.mail {
+	border:1px solid white;
+	margin:5px 0;
+	padding:5px;
+}
+.mail BUTTON {
+	float:right;
+}
+.mailatt, .mailattdel, .maildel, .mailrep {
+	float:right;
+	width:22px;
+	height:22px;
+	background:green url(obrazki/interface/mail-att.png) 0 0;
+}
+.mailattdel {
+	width:44px;
+	background-image:url(obrazki/interface/mail-att-del.png);
+}
+.maildel {
+	background-image:url(obrazki/interface/mail-del.png);
+}
+.mailrep {
+	background-image:url(obrazki/interface/mail-rep.png);
+}
+#mailnotifier {
+	position:absolute;
+	left:455px;
+	top:512px;
+	width:50px;
+	height:20px;
+	background:url(obrazki/interface/mail-notify.png);
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='obrazki/interface/mail-notify.png',sizingMethod='scale');
+	text-align:center;
+	padding-left:20px;
+	padding-top:4px;
+	font:11px Arial;
+	z-index:290;
+}
+/********* AUCTIONS *********/
+#auctions {
+	position:absolute;
+	display:none;
+	z-index:361;
+	left:0px;
+	top:0px;
+	width:512px;
+	height:512px;
+	background:#e7e2c7 url(obrazki/interface/paper512.png);
+	color:black;
+}
+#auctionsbar {
+	height:32px;
+	width:512px;
+	background-image:url(obrazki/interface/auctionbar.png);
+}
+#ahselect {
+	float:left;
+	width:120px;
+	height:478px;
+	border-right:1px solid black;
+}
+#ahselect A {
+	color:white;
+	background:black;
+	text-decoration:none;
+	display:block;
+	margin:1px;
+	padding:2px;
+	font:11px verdana;
+}
+#ahselect A:hover {
+	color:white;
+	background:#400;
+}
+#ahpanel {
+	float:right;
+	width:390px;
+	height:478px;
+	overflow:auto;
+	padding-top:10px;
+}
+#newaitem {
+	padding-bottom:5px;
+	border-bottom:2px solid black;
+	margin-bottom:5px;
+}
+#newaitem TABLE, #newaitem BUTTON {
+	font-size:90%;
+	color:black;
+}
+#newaitem TD {
+	padding:2px;
+}
+#ahtable {
+	width:360px;
+	font-size:90%;
+	color:black;
+	border-collapse:collapse;
+}
+#ahtable TH {
+	color:yellow;
+	background:#400;	
+}
+#ahtable TH, #ahtable TD {
+	border:1px solid #960;
+	padding:2px;
+	text-align:center;
+}
+#ahtable BUTTON {
+	font-size:90%;
+}
+#ahtable .itemtype0 {}
+#ahtable .itemtype1 {
+	font-weight:bold;
+}
+#ahtable .itemtype2 {
+	color:#2090FE;
+	font-weight:bold;
+}
+#ahtable .itemtype3 {
+	color:#B08;
+	font-weight:bold;
+}
+#ahtable .itemtype4 {
+	color:#f0032a;
+	font-weight:bold;
+}
+#aufilter {
+	width:360px;
+	background:#300;
+	color:yellow;
+	border:1px solid #960;
+	margin-bottom:3px;
+	padding:3px;
+	text-align:center;
+}
+#aufilter BUTTON {
+	width:150px;
+}
+.ausl {
+	color:red;
+	font-weight:bold;
+}
+INPUT.nr3 {
+	width:25px;
+}
+INPUT.nr5 {
+	width:40px;
+}

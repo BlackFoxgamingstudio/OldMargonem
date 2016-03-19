@@ -1,0 +1,21 @@
+Zmiana panelu
+
+I
+
+<div style="background-position: 0pt 0px;" id="stat2"><div id="stat2but"></div>
+<div id="stat2in">736 ±128<br>~280<br>6.36<br>256<br>225<br></div>
+
+II
+
+<div style="background-position: 0pt -98px;" id="stat2"><div id="stat2but"></div>
+<div id="stat2in">215<br>0<br><span tip="Limit 6h/dzieñ">274</span></div>
+
+III
+
+<div style="background-position: 0pt -196px;" id="stat2"><div id="stat2but"></div>
+<div id="stat2in">6%<br>x1.25<br>x1.01<br>27 (21%)<br>0 (0%)</div>
+
+IV
+
+<div style="background-position: 0pt -294px;" id="stat2"><div id="stat2but"></div>
+<div id="stat2in">25<br>0<br>0<br>0</div>
