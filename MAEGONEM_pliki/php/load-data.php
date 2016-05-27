@@ -1,5 +1,4 @@
 <?php
-
 if($postac['zalogowany'] == 0){ $postac = ""; $_SESSION['postac'] = 0; }
 if(empty($postac)) header('Location: logowanie.php');
 
